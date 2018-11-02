@@ -71,6 +71,7 @@
       <menuitem action="view-as-icons" />
       <menuitem action="view-as-detailed-list" />
       <menuitem action="view-as-compact-list" />
+      <menuitem action="view-as-miller" />
     </menu>
 
     <menu action="go-menu">

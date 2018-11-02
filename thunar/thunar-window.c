@@ -50,6 +50,7 @@
 #include <thunar/thunar-location-entry.h>
 #include <thunar/thunar-marshal.h>
 #include <thunar/thunar-menu-util.h>
+#include <thunar/thunar-miller-view.h>
 #include <thunar/thunar-pango-extensions.h>
 #include <thunar/thunar-preferences-dialog.h>
 #include <thunar/thunar-preferences.h>
@@ -792,6 +793,13 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   radio_action = gtk_radio_action_new ("view-as-compact-list", _("View as _Compact List"), _("Display folder content in a compact list view"),
                                        NULL, view_type2index (THUNAR_TYPE_COMPACT_VIEW));
   gtk_action_group_add_action_with_accel (window->action_group, GTK_ACTION (radio_action), "<control>3");
+  gtk_radio_action_set_group (radio_action, group);
+  group = gtk_radio_action_get_group (radio_action);
+  g_object_unref (G_OBJECT (radio_action));
+
+  radio_action = gtk_radio_action_new ("view-as-miller", _("View as _Miller"), _("Display folder content in an Miller column view"),
+                                       NULL, view_type2index (THUNAR_TYPE_MILLER_VIEW));
+  gtk_action_group_add_action_with_accel (window->action_group, GTK_ACTION (radio_action), "<control>4");
   gtk_radio_action_set_group (radio_action, group);
   group = gtk_radio_action_get_group (radio_action);
   g_object_unref (G_OBJECT (radio_action));
@@ -1828,6 +1836,9 @@ thunar_window_notebook_insert (ThunarWindow *window,
   _thunar_return_if_fail (THUNAR_IS_WINDOW (window));
   _thunar_return_if_fail (THUNAR_IS_FILE (directory));
   _thunar_return_if_fail (window->view_type != G_TYPE_NONE);
+
+   /* TODO: Remove */
+  printf("Entering 'thunar_window_notebook_insert() function\n");
 
   /* leave if no directory is set */
   if (directory == NULL)
