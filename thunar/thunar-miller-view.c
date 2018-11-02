@@ -131,7 +131,6 @@ thunar_miller_view_set_property (GObject      *object,
   ThunarStandardView *standard_view = THUNAR_STANDARD_VIEW (object);
 
 
-  printf("Switching on 'prop_id'=%d", prop_id);
   switch (prop_id)
     {
     case PROP_TEXT_BESIDE_ICONS:

@@ -30,6 +30,7 @@
 #include <thunar/thunar-gdk-extensions.h>
 #include <thunar/thunar-gtk-extensions.h>
 #include <thunar/thunar-icon-view.h>
+#include <thunar/thunar-miller-view.h>
 #include <thunar/thunar-pango-extensions.h>
 #include <thunar/thunar-preferences-dialog.h>
 #include <thunar/thunar-preferences.h>
@@ -116,8 +117,10 @@ transform_view_string_to_index (const GValue *src_value,
     g_value_set_int (dst_value, 1);
   else if (type == THUNAR_TYPE_COMPACT_VIEW)
     g_value_set_int (dst_value, 2);
-  else
+  else if (type == THUNAR_TYPE_MILLER_VIEW)
     g_value_set_int (dst_value, 3);
+  else
+    g_value_set_int (dst_value, 4);
 
   return TRUE;
 }
@@ -141,6 +144,10 @@ transform_view_index_to_string (const GValue *src_value,
 
     case 2:
       g_value_set_static_string (dst_value, g_type_name (THUNAR_TYPE_COMPACT_VIEW));
+      break;
+
+    case 3:
+      g_value_set_static_string (dst_value, g_type_name (THUNAR_TYPE_MILLER_VIEW));
       break;
 
     default:

@@ -666,8 +666,10 @@ view_type2index (GType type)
         return 0;
       else if (type == THUNAR_TYPE_DETAILS_VIEW)
         return 1;
-      else
+      else if (type == THUNAR_TYPE_MILLER_VIEW)
         return 2;
+      else
+        return 3;
     }
 }
 
@@ -691,6 +693,7 @@ view_index2type (gint idx)
         {
         case 0:  return THUNAR_TYPE_COMPACT_VIEW;
         case 1:  return THUNAR_TYPE_DETAILS_VIEW;
+        case 2:  return THUNAR_TYPE_MILLER_VIEW;
         default: return THUNAR_TYPE_ICON_VIEW;
         }
     }
